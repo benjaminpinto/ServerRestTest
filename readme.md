@@ -1,6 +1,6 @@
 # ServeRest API and E2E test suite
 
-[![Badge ServeRest](https://img.shields.io/badge/API-ServeRest-green)](https://github.com/ServeRest/ServeRest/) ![Cypress Tests](https://github.com/benjaminpinto/ServerRestTest/tree/master/.github/workflows/badge.svg)
+[![Badge ServeRest](https://img.shields.io/badge/API-ServeRest-green)](https://github.com/ServeRest/ServeRest/) ![Cypress Tests](https://github.com/benjaminpinto/ServerRestTest/actions/workflows/main.yml/badge.svg)
 
 Sample project to show the use of Cypress to test ServeRest [API](https://serverest.dev/) and [Front End](https://front.serverest.dev/).
 
