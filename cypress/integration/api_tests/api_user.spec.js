@@ -1,17 +1,17 @@
 const faker = require('faker-br')
 
 const user = {
-  nome: faker.name.findName(),
+  name: faker.name.findName(),
   email: faker.internet.email(),
   password: faker.internet.password(),
   administrador: 'true',
 }
 
 const product = {
-  nome: faker.commerce.productName(),
-  preco: faker.commerce.price(),
-  descricao: faker.commerce.product(),
-  quantidade: faker.random.number(),
+  name: faker.commerce.productName(),
+  price: faker.commerce.price(),
+  description: faker.commerce.product(),
+  quantity: faker.random.number(),
 }
 
 context('API - Get list and Search users', () => {
