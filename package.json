@@ -1,0 +1,25 @@
+{
+  "name": "cac-tat",
+  "version": "1.0.0",
+  "description": "A Cypress project to perform E2E tests on a simple customer service center app.",
+  "main": "index.js",
+  "scripts": {
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
+    "cy:mobile:run": "cypress run --config viewportWidth=410,viewportHeight=860",
+    "cy:mobile:open": "cypress open --config viewportWidth=410,viewportHeight=860"
+  },
+  "keywords": [
+    "Cypress.io",
+    "ServeREST",
+    "Testes e2e"
+  ],
+  "author": "Benjamin Pinto",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^9.7.0"
+  },
+  "dependencies": {
+    "faker-br": "^0.4.1"
+  }
+}
