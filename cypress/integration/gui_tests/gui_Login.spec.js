@@ -42,8 +42,14 @@ describe('E2E GUI login tests', () => {
     })
 
     it('with right user credentials', () => {
-      cy.createUserApi()
-      cy.gui_login(Cypress.env('email'), Cypress.env('password'))
+      cy.createUserApi(user)
+      cy.gui_login(user.email, user.password)
+      cy.get('h1').should('contain.text', 'Serverest Store')
+    })
+
+    it('with right admin credentials', () => {
+      cy.createUserApi(admin)
+      cy.gui_login(admin.email, admin.password)
       cy.get('h1').should('contain.text', 'Bem Vindo')
     })
   })

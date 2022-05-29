@@ -4,7 +4,7 @@
   "description": "A Cypress project to perform E2E tests on a simple customer service center app.",
   "main": "index.js",
   "scripts": {
-    "cy:run": "cypress run",
+    "test": "cypress run",
     "cy:open": "cypress open",
     "cy:mobile:run": "cypress run --config viewportWidth=410,viewportHeight=860",
     "cy:mobile:open": "cypress open --config viewportWidth=410,viewportHeight=860"

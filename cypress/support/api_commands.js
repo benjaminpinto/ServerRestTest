@@ -9,7 +9,7 @@ Cypress.Commands.add('createUserApi', (user) => {
     failOnStatusCode: false,
     url: usersUrl,
     body: {
-      nome: user.nome,
+      nome: user.name,
       email: user.email,
       password: user.password,
       administrador: user.administrador,
