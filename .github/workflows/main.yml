@@ -9,7 +9,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-        - name: Write the cypress.env.json file 📝
+      - name: Write the cypress.env.json file 📝
         # use quotes around the secret, as its value
         # is simply inserted as a string into the command
         run: |
