@@ -32,7 +32,7 @@ describe('E2E GUI SignUp', () => {
       })
   })
 
-  it.only('Signup', () => {
+  it('Signup', () => {
     const userName = faker.internet.userName()
     const userEmail = faker.internet.email()
     const userPassword = faker.internet.password()
