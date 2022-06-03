@@ -17,9 +17,7 @@
   "author": "Benjamin Pinto",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^9.7.0"
-  },
-  "dependencies": {
+    "cypress": "^9.7.0",
     "faker-br": "^0.4.1"
   }
 }

@@ -41,12 +41,14 @@ describe('E2E GUI login tests', () => {
       cy.contains('Email e/ou senha inválidos')
     })
 
+    // Creates an user with API. Skip if already exists (failOnStatusCode: false)
     it('with right user credentials', () => {
       cy.createUserApi(user)
       cy.gui_login(user.email, user.password)
       cy.get('h1').should('contain.text', 'Serverest Store')
     })
 
+    // Creates an admin with API. Skip if already exists (failOnStatusCode: false)
     it('with right admin credentials', () => {
       cy.createUserApi(admin)
       cy.gui_login(admin.email, admin.password)
