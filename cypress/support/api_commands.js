@@ -76,6 +76,7 @@ Cypress.Commands.add('getProductsList', () => {
 Cypress.Commands.add('searchProduct', (id) => {
   cy.request({
     method: 'GET',
+    failOnStatusCode: false,
     url: `${productsUrl}/${id}`,
   })
 })
@@ -94,3 +95,25 @@ Cypress.Commands.add('createProductApi', (product, token = null) => {
     },
   })
 })
+
+Cypress.Commands.add('deleteProductApi', (productId, token = null) => {
+  cy.request({
+    method: 'DELETE',
+    url: `${productsUrl}/${productId}`,
+    headers: { Authorization: token },
+    failOnStatusCode: false,
+  })
+})
+
+Cypress.Commands.add(
+  'updateProductApi',
+  (productId, editedProduct, token = null) => {
+    cy.request({
+      method: 'PUT',
+      url: `${productsUrl}/${productId}`,
+      headers: { Authorization: token },
+      body: editedProduct,
+      failOnStatusCode: false,
+    })
+  }
+)

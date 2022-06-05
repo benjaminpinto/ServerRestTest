@@ -49,7 +49,9 @@ describe('Tests from Admins home', () => {
         .should('be.visible')
         .children('[data-testid="checkbox"]')
         .should('not.be.checked')
-      cy.get(btnCadastrar).should('be.visible').and('have.text', 'Cadastrar')
+      cy.get(btnCadastrar)
+        .should('be.visible')
+        .and('have.text', 'Cadastrar')
     })
 
     it('Tries to insert user with blank fields', () => {
@@ -59,12 +61,14 @@ describe('Tests from Admins home', () => {
       cy.contains('Password é obrigatório').should('be.visible')
     })
 
-    it.only('Check email validation', () => {
+    it('Check email validation', () => {
       cy.get(emailField).type('any_invalid@email_com;')
       cy.get(btnCadastrar).click()
-      cy.get(emailField).invoke('prop', 'validity').should('deep.include', {
-        valid: false,
-      })
+      cy.get(emailField)
+        .invoke('prop', 'validity')
+        .should('deep.include', {
+          valid: false,
+        })
     })
 
     it('Include a valid user', () => {
