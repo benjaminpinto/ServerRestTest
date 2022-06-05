@@ -7,7 +7,7 @@ describe('E2E GUI login tests', () => {
   })
 
   context('Visibility and state of elements', () => {
-    it("Check initial state of page's elements", () => {
+    it('Check initial state of page\'s elements', () => {
       cy.get('.form').should('be.visible').and('contain.text', 'Login')
       cy.get('.imagem').should('be.visible')
       cy.get('[data-testid="email"]').should('be.visible').and('be.empty')

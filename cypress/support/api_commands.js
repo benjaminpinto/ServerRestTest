@@ -49,9 +49,25 @@ Cypress.Commands.add('getUsersList', () => {
   })
 })
 
+Cypress.Commands.add('deleteUser', (userId) => {
+  cy.request({
+    method: 'DELETE',
+    url: `${usersUrl}/${userId}`,
+  })
+})
+
 Cypress.Commands.add('searchUser', (id) => {
   cy.request({
     method: 'GET',
     url: `${usersUrl}/${id}`,
+  })
+})
+
+Cypress.Commands.add('editUser', (userID, editedUser) => {
+  cy.request({
+    method: 'PUT',
+    url: `${usersUrl}/${userID}`,
+    body: editedUser,
+    failOnStatusCode: false,
   })
 })

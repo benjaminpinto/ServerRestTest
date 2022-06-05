@@ -6,6 +6,8 @@ Sample project to show the use of Cypress to test ServeRest [API](https://server
 
 To get more details about booth, front and backend, visit ServeRest's [Github page](https://github.com/ServeRest).
 
+In a real scenario, considering that front and backend are different projects ate ServeRest, we should have also two separated test projects. However, this is a sample project in wich I'm just doing a hand's on with Cypress, then API and E2E tests are being made here.
+
 ## Pre-requirements
 
 It is required to have Node.js and npm installed to run this project.

@@ -59,7 +59,7 @@ describe('Tests from Admins home', () => {
       cy.contains('Password é obrigatório').should('be.visible')
     })
 
-    it('Check email validation', () => {
+    it.only('Check email validation', () => {
       cy.get(emailField).type('any_invalid@email_com;')
       cy.get(btnCadastrar).click()
       cy.get(emailField).invoke('prop', 'validity').should('deep.include', {

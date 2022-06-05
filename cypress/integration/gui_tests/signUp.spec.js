@@ -5,7 +5,7 @@ describe('E2E GUI SignUp', () => {
     cy.visit('https://front.serverest.dev/cadastrarusuarios')
   })
 
-  it("Check page's elements visibility, state and expected behaviors", () => {
+  it('Check page\'s elements visibility, state and expected behaviors', () => {
     cy.get('#nome').should('be.visible').and('be.empty')
     cy.get('#email').should('be.visible').and('be.empty')
     cy.get('#password').should('be.visible').and('be.empty')
