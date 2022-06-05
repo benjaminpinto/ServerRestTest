@@ -69,9 +69,9 @@ describe('API Users tests', () => {
 
   context('Editing an user', () => {
     const editedUser = {
-      nome: 'FulanoEditado da Silva 55',
-      email: 'beltranoTestador@qa.com.br',
-      password: 'testeDiferente',
+      nome: faker.name.findName(),
+      email: faker.internet.email(),
+      password: faker.internet.password(),
       administrador: 'true',
     }
 

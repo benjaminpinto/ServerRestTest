@@ -37,7 +37,7 @@ The purpose of this project is to be an use case of how we can perform E2E and A
 ### Finally, just some tips to understand the code
 
 - We are using the online endpoint of ServeRest. According to it's [documentation page](https://github.com/ServeRest/ServeRest#online), all data stored are cleaned daily, at 3am.
-- Due to make tests independent and fast, repeatable steps are made by using API calls, instead of repeatedly do it from GUI (ex: login);
+- Due to make tests independent and fast, even in frontend, repeatable steps are made by using API calls, instead of repeatedly do it from GUI (ex: login). We will **mock** all the frontend soon.
 - Spec files are organized in two main folders: [`api_tests`](cypress/integration/api_tests/) and [`gui_tests`](cypress/integration/gui_tests/).
 - Custom commands are defined at [`api_commands`](cypress/support/api_commands.js) and [`gui_commands`](cypress/support/gui_commands.js)
 
