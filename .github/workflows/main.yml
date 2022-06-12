@@ -20,7 +20,7 @@ jobs:
         uses: cypress-io/github-action@v4
       with:
           record: true
-        env:
-          # pass GitHub token to detect new build vs re-run build
+      env:
+         # pass GitHub token to detect new build vs re-run build
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}  
           CYPRESS_RECORD_KEY: ${{secrets.CYPRESS_RECORD_KEY}}  
