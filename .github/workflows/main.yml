@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-        parallel: false
+          parallel: false
 
       - name: Write the cypress.env.json file 📝
         with:
