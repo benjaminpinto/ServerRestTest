@@ -21,12 +21,12 @@ jobs:
           parallel: false
 
       - name: Write the cypress.env.json file 📝
-        with:
-          parallel: false
         # use quotes around the secret, as its value
         # is simply inserted as a string into the command
         run: |
           echo '${{ secrets.CYPRESS_ENV_CI }}' > cypress.env.json
+        with:
+          parallel: false
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
