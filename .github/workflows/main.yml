@@ -5,11 +5,24 @@ on: [push]
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+    strategy:
+      # when one test fails, DO NOT cancel the other
+      # containers, because this will kill Cypress processes
+      # leaving the Dashboard hanging ...
+      # https://github.com/cypress-io/github-action/issues/48
+      fail-fast: false
+      matrix:
+        # run copies of the current job in parallel
+        containers: [1, 2, 3, 4]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+        parallel: false
 
       - name: Write the cypress.env.json file 📝
+        with:
+          parallel: false
         # use quotes around the secret, as its value
         # is simply inserted as a string into the command
         run: |
@@ -21,15 +34,7 @@ jobs:
         # and run all Cypress tests
         with:
           record: true
-          strategy:
-          # when one test fails, DO NOT cancel the other
-          # containers, because this will kill Cypress processes
-          # leaving the Dashboard hanging ...
-          # https://github.com/cypress-io/github-action/issues/48
-          fail-fast: false
-          matrix:
-            # run copies of the current job in parallel
-            containers: [1, 2, 3, 4, 5]
+          parallel: true
         env:
           # pass GitHub token to detect new build vs re-run build
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
