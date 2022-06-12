@@ -9,7 +9,7 @@ describe('API Users tests', () => {
   }
 
   context('Get list and Search users', () => {
-    it("Get user's list, then search for the first using his ID", () => {
+    it('Get user\'s list, then search for the first using his ID', () => {
       cy.getUsersList().then((list) => {
         expect(list.status).to.equal(200)
         expect(list.body).be.not.empty
