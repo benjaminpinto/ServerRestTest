@@ -16,6 +16,7 @@ jobs:
           echo '${{ secrets.CYPRESS_ENV_CI }}' > cypress.env.json
 
       - name: Cypress run
+        uses: cypress-io/github-action@v4
         strategy:
         # when one test fails, DO NOT cancel the other
         # containers, because this will kill Cypress processes
@@ -27,7 +28,6 @@ jobs:
           containers: [1, 2, 3, 4, 5]
         # Install NPM dependencies, cache them correctly
         # and run all Cypress tests
-        uses: cypress-io/github-action@v4
         with:
           record: true
         env:
