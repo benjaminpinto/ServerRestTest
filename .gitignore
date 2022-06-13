@@ -3,3 +3,5 @@ cypress/videos/
 cypress/screenshots/
 
 cypress.env.json
+cypress/results/
+mochawesome-report/

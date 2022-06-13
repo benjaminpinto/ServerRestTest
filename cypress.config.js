@@ -10,4 +10,13 @@ module.exports = defineConfig({
     },
     experimentalSessionAndOrigin: true,
   },
+
+  // Reporter config
+  reporter: 'mochawesome',
+  reporterOptions: {
+    reportDir: 'cypress/results',
+    overwrite: false,
+    html: false,
+    json: true,
+  },
 })
