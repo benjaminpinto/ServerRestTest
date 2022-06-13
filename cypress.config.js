@@ -9,14 +9,14 @@ module.exports = defineConfig({
       return require('./cypress/plugins/index.js')(on, config)
     },
     experimentalSessionAndOrigin: true,
-  },
 
-  // Reporter config
-  reporter: 'mochawesome',
-  reporterOptions: {
-    reportDir: 'cypress/results',
-    overwrite: false,
-    html: false,
-    json: true,
+    // Reporter config
+    reporter: 'mochawesome',
+    reporterOptions: {
+      reportDir: 'cypress/results',
+      overwrite: false,
+      html: false,
+      json: true,
+    },
   },
 })
