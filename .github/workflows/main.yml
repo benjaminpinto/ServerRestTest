@@ -17,8 +17,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          parallel: false
 
       - name: Write the cypress.env.json file 📝
         # use quotes around the secret, as its value
