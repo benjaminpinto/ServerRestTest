@@ -6,10 +6,17 @@
   "scripts": {
     "test": "cypress run",
     "cy:open": "cypress open",
+    "report": "npm run scripts || npm run postreport",
     "cy:mobile:run": "cypress run --config viewportWidth=410,viewportHeight=860",
     "cy:mobile:open": "cypress open --config viewportWidth=410,viewportHeight=860",
     "lint": "eslint cypress/**/*.js",
-    "lint:fix": "eslint cypress/**/*.js --fix"
+    "lint:fix": "eslint cypress/**/*.js --fix",
+    "prereport": "npm run clean:reports",
+    "postreport": "npm run combine-reports && npm run generate-report",
+    "clean:reports": "if exist cypress\\reports rmdir /S /Q cypress\\reports",
+    "scripts": "cypress run --reporter mochawesome",
+    "combine-reports": "mochawesome-merge cypress/reports/*.json > report.json",
+    "generate-report": "marge report.json -f report -o cypress/reports && del report.json"
   },
   "keywords": [
     "Cypress.io",
