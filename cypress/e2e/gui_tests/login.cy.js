@@ -55,7 +55,7 @@ describe('E2E GUI login tests', () => {
     })
 
     // Creates an admin with API. Skip if already exists (failOnStatusCode: false)
-    it.only('with right admin credentials', () => {
+    it('with right admin credentials', () => {
       cy.createUserApi(admin)
       cy.gui_login(admin.email, admin.password)
       cy.findByText(/Bem Vindo/i).should('be.visible')

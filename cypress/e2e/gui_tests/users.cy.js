@@ -110,7 +110,7 @@ describe('Tests from users page', () => {
       cy.log("Edit functionality ins't implemented on frontend.")
     })
 
-    it.only('Delete user', () => {
+    it('Delete user', () => {
       cy.intercept('DELETE', '**/usuarios/*').as('deleteUser')
       let linesBeforeDel = 0
 
