@@ -46,9 +46,9 @@ describe('Tests from users page', () => {
 
     it('Tries to insert user with blank fields', () => {
       cy.get(btnCadastrar).click()
-      cy.contains('Nome é obrigatório').should('be.visible')
-      cy.contains('Email é obrigatório').should('be.visible')
-      cy.contains('Password é obrigatório').should('be.visible')
+      cy.findByText(/Nome é obrigatório/i).should('be.visible')
+      cy.findByText(/Email é obrigatório/i).should('be.visible')
+      cy.findByText(/Password é obrigatório/i).should('be.visible')
     })
 
     it('Check email validation', () => {
@@ -85,10 +85,10 @@ describe('Tests from users page', () => {
       cy.get('[data-testid="checkbox"]').check()
       cy.get(btnCadastrar).click()
       cy.wait('@getUsers')
-      cy.contains(admin.name)
+      cy.findByText(admin.name)
         .should('be.visible')
         .siblings(':nth-child(4)')
-        .should('contain.text', 'true')
+        .should('have.text', 'true')
     })
   })
 
@@ -98,20 +98,19 @@ describe('Tests from users page', () => {
     })
 
     it('Check main elements at list page', () => {
-      cy.contains('Lista dos usuários').should('be.visible')
-      cy.get('table').should('be.visible')
-      cy.get('[data-testid="logout"]').should('be.visible')
+      cy.findByText(/Lista dos usuários/i).should('be.visible')
+      cy.findByRole('table').should('be.visible')
+      cy.findByTestId('logout').should('be.visible')
     })
 
-    it('Edit user', () => {
-      cy.get('tbody tr td')
-        .last()
-        .find('.btn-info')
+    it.skip('Edit user [Not implemented on frontend]', () => {
+      cy.findAllByText(/Editar/i)
+        .first()
         .click()
       cy.log("Edit functionality ins't implemented on frontend.")
     })
 
-    it('Delete user', () => {
+    it.only('Delete user', () => {
       cy.intercept('DELETE', '**/usuarios/*').as('deleteUser')
       let linesBeforeDel = 0
 

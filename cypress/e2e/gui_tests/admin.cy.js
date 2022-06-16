@@ -7,11 +7,14 @@ describe('Tests from Admins home', () => {
   })
 
   it('Visibility of main elements', () => {
-    cy.get('h1').should('contain.text', `Bem Vindo  ${admin.name}`)
-    cy.get('[data-testid="cadastrarUsuarios"]').should('be.visible')
-    cy.get('[data-testid="listarUsuarios"]').should('be.visible')
-    cy.get('[data-testid="cadastrarProdutos"]').should('be.visible')
-    cy.get('[data-testid="listarProdutos"]').should('be.visible')
-    cy.get('[data-testid="relatorios"]').should('be.visible')
+    cy.findByRole('heading', { level: 1 }).should(
+      'contain.text',
+      `Bem Vindo  ${admin.name}`
+    )
+    cy.findByTestId('cadastrarUsuarios').should('be.visible')
+    cy.findByTestId('listarUsuarios').should('be.visible')
+    cy.findByTestId('cadastrarProdutos').should('be.visible')
+    cy.findByTestId('listarProdutos').should('be.visible')
+    cy.findByTestId('relatorios').should('be.visible')
   })
 })

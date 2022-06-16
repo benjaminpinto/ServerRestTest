@@ -7,22 +7,28 @@ describe('E2E GUI login tests', () => {
   })
 
   context('Visibility and state of elements', () => {
-    it('Check initial state of page\'s elements', () => {
-      cy.get('.form').should('be.visible').and('contain.text', 'Login')
-      cy.get('.imagem').should('be.visible')
-      cy.get('[data-testid="email"]').should('be.visible').and('be.empty')
-      cy.get('[data-testid="senha"]').should('be.visible').and('be.empty')
-      cy.get('[data-testid="entrar"]').should('be.visible').and('be.enabled')
-      cy.get('.message')
-        .should('contain.text', 'Não é cadastrado?')
-        .children()
-        .should('have.attr', 'data-testid', 'cadastrar')
+    it("Check initial state of page's elements", () => {
+      cy.findByRole('img').should('be.visible')
+      cy.findByRole('heading', { level: 1 })
+        .should('be.visible')
+        .and('contain.text', 'Login')
+      cy.findByTestId('email')
+        .should('be.visible')
+        .and('be.empty')
+      cy.findByTestId('senha')
+        .should('be.visible')
+        .and('be.empty')
+      cy.findByTestId('entrar')
+        .should('be.visible')
+        .and('be.enabled')
+      cy.findByText('Não é cadastrado?').should('be.visible')
+      cy.findByText('Cadastre-se').should('be.visible')
     })
   })
 
   it('Verify invalid e-mail message', () => {
     cy.gui_login('invalid-email.com', 'any-pass')
-    cy.get('#email.form-control')
+    cy.findByTestId('email')
       .invoke('prop', 'validity')
       .should('deep.include', {
         valid: false,
@@ -31,28 +37,28 @@ describe('E2E GUI login tests', () => {
 
   context('Do login', () => {
     it('with empty credentials', () => {
-      cy.get('[data-testid="entrar"]').click()
-      cy.contains('Email é obrigatório')
-      cy.contains('Password é obrigatório')
+      cy.findByTestId('entrar').click()
+      cy.findByText('Email é obrigatório').should('be.visible')
+      cy.findByText('Password é obrigatório').should('be.visible')
     })
 
     it('with wrong credentials', () => {
       cy.gui_login('wrong@email.com', 'wrong-password')
-      cy.contains('Email e/ou senha inválidos')
+      cy.findByText('Email e/ou senha inválidos').should('be.visible')
     })
 
     // Creates an user with API. Skip if already exists (failOnStatusCode: false)
     it('with right user credentials', () => {
       cy.createUserApi(user)
       cy.gui_login(user.email, user.password)
-      cy.get('h1').should('contain.text', 'Serverest Store')
+      cy.findByText('Serverest Store').should('be.visible')
     })
 
     // Creates an admin with API. Skip if already exists (failOnStatusCode: false)
-    it('with right admin credentials', () => {
+    it.only('with right admin credentials', () => {
       cy.createUserApi(admin)
       cy.gui_login(admin.email, admin.password)
-      cy.get('h1').should('contain.text', 'Bem Vindo')
+      cy.findByText(/Bem Vindo/i).should('be.visible')
     })
   })
 })

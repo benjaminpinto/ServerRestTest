@@ -34,10 +34,10 @@ describe('Tests from products page', () => {
 
   it('Tries to insert product with blank fields', () => {
     cy.get(btnCadastrar).click()
-    cy.contains('Nome é obrigatório').should('be.visible')
-    cy.contains('Preco é obrigatório').should('be.visible')
-    cy.contains('Descricao é obrigatório').should('be.visible')
-    cy.contains('Quantidade é obrigatório').should('be.visible')
+    cy.findByText(/Nome é obrigatório/i).should('be.visible')
+    cy.findByText(/Preco é obrigatório/i).should('be.visible')
+    cy.findByText(/Descricao é obrigatório/i).should('be.visible')
+    cy.findByText(/Quantidade é obrigatório/i).should('be.visible')
   })
 
   it.skip('Tries to insert a product without image - Not passing (issue opened)', () => {
@@ -46,6 +46,6 @@ describe('Tests from products page', () => {
     cy.get(descriptionField).type(faker.lorem.paragraph())
     cy.get(quantityField).type(faker.random.number())
     cy.get(btnCadastrar).click()
-    cy.contains('Imagem é obrigatório').should('be.visible')
+    cy.findByText(/Imagem é obrigatório/i).should('be.visible')
   })
 })

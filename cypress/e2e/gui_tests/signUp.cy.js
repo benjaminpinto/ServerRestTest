@@ -5,34 +5,46 @@ describe('E2E GUI SignUp', () => {
     cy.visit('https://front.serverest.dev/cadastrarusuarios')
   })
 
-  it('Check page\'s elements visibility, state and expected behaviors', () => {
-    cy.get('#nome').should('be.visible').and('be.empty')
-    cy.get('#email').should('be.visible').and('be.empty')
-    cy.get('#password').should('be.visible').and('be.empty')
-    cy.get('#administrador').should('be.visible').and('be.not.checked')
-    cy.get('[data-testid="cadastrar"]').should('be.visible').and('be.enabled')
-    cy.contains('Já é cadastrado?').should('be.visible')
-    cy.get('[data-testid="entrar"]').should('be.visible')
+  it("Check page's elements visibility, state and expected behaviors", () => {
+    cy.findByTestId('nome')
+      .should('be.visible')
+      .and('be.empty')
+    cy.findByTestId('email')
+      .should('be.visible')
+      .and('be.empty')
+    cy.findByTestId('password')
+      .should('be.visible')
+      .and('be.empty')
+    cy.findByTestId('checkbox')
+      .should('be.visible')
+      .and('be.not.checked')
+    cy.findByTestId('cadastrar')
+      .should('be.visible')
+      .and('be.enabled')
+    cy.findByText('Já é cadastrado?').should('be.visible')
+    cy.findByTestId('entrar').should('be.visible')
   })
 
   it('Check error messages when let blank fields', () => {
-    cy.get('[data-testid="cadastrar"]').click()
-    cy.contains('Nome é obrigatório').should('be.visible')
-    cy.contains('Email é obrigatório').should('be.visible')
-    cy.contains('Password é obrigatório').should('be.visible')
+    cy.findByTestId('cadastrar').click()
+    cy.findByText(/Nome é obrigatório/i).should('be.visible')
+    cy.findByText(/Email é obrigatório/i).should('be.visible')
+    cy.findByText(/Password é obrigatório/i).should('be.visible')
   })
 
   it('Check error messages when let invalid e-mail', () => {
-    cy.get('#email').clear().type('invalid-email.com')
-    cy.get('[data-testid="cadastrar"]').click()
-    cy.get('#email.form-control')
+    cy.findByTestId('email')
+      .clear()
+      .type('invalid-email.com')
+    cy.findByTestId('cadastrar').click()
+    cy.findByTestId('email')
       .invoke('prop', 'validity')
       .should('deep.include', {
         valid: false,
       })
   })
 
-  it('Signup', () => {
+  it.only('Signup', () => {
     const userName = faker.internet.userName()
     const userEmail = faker.internet.email()
     const userPassword = faker.internet.password()
@@ -41,14 +53,16 @@ describe('E2E GUI SignUp', () => {
 
     // Signup for the first time
     cy.gui_signUp(userName, userEmail, userPassword)
-    cy.contains('Cadastro realizado com sucesso').should('be.visible')
+    cy.findByText(/Cadastro realizado com sucesso/i).should('be.visible')
     cy.wait('@login')
-    cy.get('h1').should('contain.text', 'Serverest Store')
+    cy.findByText(/Serverest Store/i).should('be.visible')
 
     // Logout and try to signup with the same credentials
-    cy.get('[data-testid="logout"]').should('be.visible').click()
+    cy.findByTestId('logout')
+      .should('be.visible')
+      .click()
     cy.visit('https://front.serverest.dev/cadastrarusuarios')
     cy.gui_signUp(userName, userEmail, userPassword)
-    cy.contains('Este email já está sendo usado').should('be.visible')
+    cy.findByText(/Este email já está sendo usado/i).should('be.visible')
   })
 })

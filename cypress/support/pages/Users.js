@@ -1,8 +1,8 @@
 export class Users {
   fillForm(user) {
-    cy.get('[data-testid="nome"]').type(user.name)
-    cy.get('[data-testid="email"]').type(user.email)
-    cy.get('[data-testid="password"]').type(user.password)
+    cy.findByTestId('nome').type(user.name)
+    cy.findByTestId('email').type(user.email)
+    cy.findByTestId('password').type(user.password)
   }
 }
 
