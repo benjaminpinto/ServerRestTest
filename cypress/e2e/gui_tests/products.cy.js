@@ -1,8 +1,9 @@
+import { produtos } from '../../fixtures/products'
+
 describe('Tests from products page', () => {
   beforeEach(() => {
     cy.guiAdminLogin(Cypress.env('admin'))
     cy.visit(Cypress.env('frontUrl') + '/admin/home')
-    cy.get('[data-testid="cadastrarProdutos"]').click()
   })
 
   const nameField = '[data-testid="nome"]'
@@ -13,7 +14,8 @@ describe('Tests from products page', () => {
 
   const faker = require('faker-br')
 
-  it('Check page elements', () => {
+  it("Check insert product's page elements", () => {
+    cy.get('[data-testid="cadastrarProdutos"]').click()
     cy.contains('Cadastro de Produtos').should('be.visible')
     cy.get(nameField)
       .should('be.visible')
@@ -33,6 +35,7 @@ describe('Tests from products page', () => {
   })
 
   it('Tries to insert product with blank fields', () => {
+    cy.get('[data-testid="cadastrarProdutos"]').click()
     cy.get(btnCadastrar).click()
     cy.findByText(/Nome é obrigatório/i).should('be.visible')
     cy.findByText(/Preco é obrigatório/i).should('be.visible')
@@ -41,11 +44,21 @@ describe('Tests from products page', () => {
   })
 
   it.skip('Tries to insert a product without image - Not passing (issue opened)', () => {
+    cy.get('[data-testid="cadastrarProdutos"]').click()
     cy.get(nameField).type(faker.commerce.productName())
     cy.get(priceField).type(faker.commerce.price())
     cy.get(descriptionField).type(faker.lorem.paragraph())
     cy.get(quantityField).type(faker.random.number())
     cy.get(btnCadastrar).click()
     cy.findByText(/Imagem é obrigatório/i).should('be.visible')
+  })
+
+  it.only('Check products list page elements', () => {
+    cy.intercept('GET', '**/produtos', { fixture: 'products' })
+    cy.findByTestId('listarProdutos').click()
+    cy.findByText(/Lista dos produtos/i).should('be.visible')
+    cy.findByTestId('logout').should('be.visible')
+    cy.findByRole('table').should('be.visible')
+    cy.contains(produtos[0].nome).should('be.visible')
   })
 })
