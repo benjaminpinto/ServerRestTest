@@ -2,6 +2,9 @@ const faker = require('faker-br')
 import { onUsersPage } from '../../support/pages/Users'
 
 describe('Tests from users page', () => {
+  before(() => {
+    Cypress.session.clearAllSavedSessions()
+  })
   beforeEach(() => {
     cy.guiAdminLogin(Cypress.env('admin'))
     cy.visit(Cypress.env('frontUrl') + '/admin/home')

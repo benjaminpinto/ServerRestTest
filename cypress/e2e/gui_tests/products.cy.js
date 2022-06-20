@@ -1,6 +1,9 @@
 import { produtos } from '../../fixtures/products'
 
 describe('Tests from products page', () => {
+  before(() => {
+    Cypress.session.clearAllSavedSessions()
+  })
   beforeEach(() => {
     cy.guiAdminLogin(Cypress.env('admin'))
     cy.visit(Cypress.env('frontUrl') + '/admin/home')
